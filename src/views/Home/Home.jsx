@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { MovieService } from "../../api/MovieService"
+import MovieService from "../../api/MovieService"
 import MovieCard from '../../components/MovieCard/MovieCard'
 
-const Home = () => {
+const Home = ( {searchValueProp} ) => {
 
   const [movies, setMovies] = useState([])
 
@@ -11,14 +11,26 @@ const Home = () => {
     setMovies(results)
   }
 
+  async function getMoviesSearch(movieString) {
+    const {
+      data: {results}} = await MovieService.searchMovies(movieString);
+    setMovies(results)
+  }
+
+
   useEffect(() => {
     getMovies();
   },[])
 // ,[] === para ser executado apenas uma vez 
 
 useEffect(() => {
-  console.log(movies);
-})
+  if (searchValueProp) {
+    getMoviesSearch(searchValueProp)
+  }
+  if (searchValueProp === '') {
+    getMovies();
+  }
+}, [searchValueProp])
 
 
   return (

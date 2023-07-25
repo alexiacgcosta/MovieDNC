@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
-import { MovieService } from '../../api/MovieService'
+import MovieService from '../../api/MovieService'
 
 const MovieDetail = () => {
   const {id} = useParams();
@@ -16,7 +16,7 @@ const MovieDetail = () => {
   }, []);
 
   useEffect(() => {
-    console.log(data);
+    
   })
   
 

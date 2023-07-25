@@ -5,7 +5,7 @@ const API_KEY = "5bf9eea04742798b4d4a25afc49a1283";
 
 const withBaseUrl = (path) => `${BASE_URL}${path}?api_key=${API_KEY}`;
 
-export class MovieService {
+export default class MovieService {
   static getMovies() {
     return axios(withBaseUrl("movie/popular"));
   }
@@ -14,7 +14,7 @@ export class MovieService {
     return axios(withBaseUrl(`movie/${id}`));
   }
 
-  static searchDetails(movie) {
-    return axios(withBaseUrl("search/movie" + `&query=${movie}`));
+  static searchMovies(movie) {
+    return axios(withBaseUrl("search/movie") + `&query=${movie}`);
   }
 }
